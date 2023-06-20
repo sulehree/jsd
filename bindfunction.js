@@ -16,3 +16,4 @@ candidate = {
 
 let NewFunction = Greetings.bind(candidate); // here we are binding a functions that has the same properties
 NewFunction();
+
