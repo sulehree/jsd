@@ -36,14 +36,21 @@
 // Async and wait
 
 let getTodos = async () => {
-    let response = await fetch("myDatad.json");
+
+    try {
+        let response = await fetch("myData.json");
     // Custom Error handling
-    if (response.status!==200){
-        throw new Error("custom error: Data is not Fetched"); // a good way to handle error.. use Error Object;
-    }
+    // if (response.status!==200){
+    //     throw new Error("custom error: Data is not Fetched"); // a good way to handle error.. use Error Object;
+    // }
 
     let responsedata = await response.json();
     return responsedata;
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+    
 
 }
 
@@ -56,10 +63,17 @@ getTodos().then((data) => {
 
 
 
-try {
-    let x=2;
-    const y=6;
-    y=x;
-} catch (error) {
-    console.log(error);
+function double(x){return x*x}
+// triple=function (x){ return x*x*x}
+// tetra=(x)=>{return x*x*x*x}
+// console.log(double(2));
+// console.log(triple(2));
+// console.log(tetra(2));
+
+setTimeout(()=>{
+    print (double(5))
+},3000)
+
+function print(d){
+    console.log(d)
 }
