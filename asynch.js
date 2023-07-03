@@ -60,26 +60,26 @@
 
 
 // we are passing a function as argument
-let ToDo = (callbackFunc, fileSource) => {
-    let request = new XMLHttpRequest();
+// let ToDo = (callbackFunc, fileSource) => {
+//     let request = new XMLHttpRequest();
 
-    request.addEventListener('readystatechange', () => {
+//     request.addEventListener('readystatechange', () => {
 
-        if (request.readyState === 4 && request.status === 200) {
-            // console.log("Data has fetched,  so Start work on it", request.responseText)
-            let data = JSON.parse(request.responseText)
-            callbackFunc(undefined, data)
-            // callbackFunc(undefined,request.responseText)
-        } else if (request.readyState === 4) {
-            //  console.log(request.responseText)
-            callbackFunc(`ErrorStatus: ${request.status} , Data Not Found`, undefined);
-        }
-    })
+//         if (request.readyState === 4 && request.status === 200) {
+//             // console.log("Data has fetched,  so Start work on it", request.responseText)
+//             let data = JSON.parse(request.responseText)
+//             callbackFunc(undefined, data)
+//             // callbackFunc(undefined,request.responseText)
+//         } else if (request.readyState === 4) {
+//             //  console.log(request.responseText)
+//             callbackFunc(`ErrorStatus: ${request.status} , Data Not Found`, undefined);
+//         }
+//     })
 
-    // request.open("GET", "https://jsonplaceholder.typicode.com/todos")// with http
-    request.open("GET", fileSource)// with file in local storage
-    request.send();
-}
+//     // request.open("GET", "https://jsonplaceholder.typicode.com/todos")// with http
+//     request.open("GET", fileSource)// with file in local storage
+//     request.send();
+// }
 
 // we are passing a function as argument
 // As ToDo is using some html requst, that include interaction with network, as it is a async function
@@ -87,28 +87,93 @@ let ToDo = (callbackFunc, fileSource) => {
 console.log(1)
 console.log(2)
 // Call Back Hell.. where we call function in the function to maintain a sequence for asynch functions call
+// ToDo((error, data) => {
+//     if (error) { console.log(error) }
+//     else { console.log(data) }
 
-ToDo((error, data) => {
-    if (error) { console.log(error) }
-    else { console.log(data) }
+//     // call of same function in the function
+//     ToDo((error, data) => {
+//         if (error) { console.log(error) }
+//         else { console.log(data) }
 
-    // call of same function in the function
-    ToDo((error, data) => {
-        if (error) { console.log(error) }
-        else { console.log(data) }
+//         // call of same function in the function of function
 
-        // call of same function in the function of function
-
-        ToDo((error, data) => {
-            if (error) { console.log(error) }
-            else { console.log(data) }
-        }, "myData.json")
-
-
-    }, "https://jsonplaceholder.typicode.com/todos")
+//         ToDo((error, data) => {
+//             if (error) { console.log(error) }
+//             else { console.log(data) }
+//         }, "myData.json")
 
 
+//     }, "https://jsonplaceholder.typicode.com/todos")
 
-}, "myData.json");
+
+
+// }, "myData.json");
 console.log(3);
 console.log(4);
+
+
+
+//  User of Promise // an Example
+
+let getSomeThing = () => {
+    return new Promise((resolve, reject) => {
+
+        // as only one functino can be called in Promise, We have to apply some condition to call one function from both, resolve or reject
+
+        let num = Math.random();
+        if (num < .5) {
+            resolve(`Success: ${num}`);
+        }
+        else {
+            reject(`Error: ${num}`);
+        }
+
+    })
+}
+
+getSomeThing().then((data) => { console.log(data) }).catch((error) => { console.log(error) })
+
+
+//
+
+
+// Promise Practical practical example
+
+
+let ToDo = (fileSource) => {
+    return new Promise((resolve, reject) => {
+        let request = new XMLHttpRequest();
+        request.addEventListener('readystatechange', () => {
+
+            if (request.readyState === 4 && request.status === 200) {
+
+                let data = JSON.parse(request.responseText) //
+                resolve(data);
+
+            } else if (request.readyState === 4) {
+
+                reject(`Error in Fetching Data due to Error:${request.status}`)
+
+            }
+        })
+        // request.open("GET", "https://jsonplaceholder.typicode.com/todos")// with http
+        request.open("GET", fileSource)// with file in local storage
+        request.send();
+    })
+
+
+
+
+
+}
+
+ToDo("myData.json").then((data) => {
+    console.log(data);
+    return ToDo("https://jsonplaceholder.typicode.com/todos")
+}).then((data) => {
+    console.log(data);
+}).catch((error) => {
+    console.log(error);
+});
+// above example of promise Chain...
