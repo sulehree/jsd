@@ -1,26 +1,66 @@
 // Object Literals
- let  openingHours={
-    Monday:{open:"08:00 AM",close:"07:00 PM"},
-    Tuesday:{open:"08:00 AM",close:"07:00 PM"},
-    Wednesday:{open:"08:00 AM",close:"07:00 PM"},
-    Thursday:{open:"08:00 AM",close:"07:00 PM"},
-    Friday:{open:"08:00 AM",close:"01:00 PM"},
-    Saturday:{open:"08:00 AM",close:"10:00 PM"}
-    }
-  let hotel={
-        hotelName:"Nishat Hotel",
-        hotelLocation:" Johar Town Lahore",
-        foodCategories:["Desi","Chines","Continental","Italian","Turkish"],
-        foodMenu:["FoodA","FoodB","FoodC"],
-        NewOpeningHours:openingHours,
-        makeOrder(){}
+let varName="abbas"
+  let aMap= new Map();
+  aMap.set("mapName","MyMAP");
+  aMap.set(true,"Theek");
+  aMap.set(1,"ONE")
+aMap.set(varName,"karachi");
+aMap.set("city","Lahore").set("country","Pakistan").set("province","Punjab")
+aMap.set(["A","b"],["4","5" ])
+console.log(aMap)
+
+ 
+ for( let a of aMap){
+  console.log(Object.values(a)[0],Object.values(a)[1]);
+  // console.log();
+  
+ }
+
+//  let  openingHours={
+//                     Monday:{open:"08:00 AM",close:"07:00 PM"},
+//                     Tuesday:{open:"08:00 AM",close:"07:00 PM"},
+//                     Wednesday:{open:"08:00 AM",close:"07:00 PM"},
+//                     Thursday:{open:"08:00 AM",close:"07:00 PM"},
+//                     Friday:{open:"08:00 AM",close:"01:00 PM"},
+//                     Saturday:{open:"08:00 AM",close:"10:00 PM"},
+//                     Sunday:{open:"08:00 AM",close:"10:00 PM"},
+//                     }
+//                     menuType="Gold Menu" // Computed Property Name
+//   let hotel  ={
+//                     hotelName:"Nishat Hotel",
+//                     hotelLocation:" Johar Town Lahore",
+//                     foodCategories:["Desi","Chines","Continental","Italian","Turkish"],
+//                     foodMenu:["FoodA","FoodB","FoodC"],
+//                     NewOpeningHours:openingHours,
+//                     makeOrder(){},
+//                     [menuType]:["Different food Items"] // we can chnge the property name by placing the square brackets around it.. 
        
-   }
+//               }
 
 
-  console.log(hotel);
+ // Optional Chaining Operator.. 
+           
+ 
+              // let objectKeys= Object.keys(hotel) // by this we can get the keys of any array in an array
+              // console.log(objectKeys);
+              // let objectEntries= Object.entries(hotel.NewOpeningHours);
+              // // console.log(objectEntries)
+              // for(let [day,{open,close}] of objectEntries){
+                
+              //   // console.log(`Our Hotel Opens on ${day.padEnd(10)}:\tOpening Timing: ${open} and Closing Timing: ${close}`)
+                
+              // }
 
-// // console.log("ES6 Example");
+
+      
+// Making an Array of uniquie values of given many values
+//  let itemSet=new Set( Object.values(hotel.foodCategories)) // Set() will return the set of unique values
+// console.log(itemSet);
+// console.log(itemSet.add("pakistan"))
+// // console.log(itemSet.delete("pakistan"))
+// console.log(itemSet);
+// console.log(itemSet.size);
+// // console.log("ES6 Exampl.e");
 // // Array Destructureing
 
 
@@ -89,4 +129,4 @@
 //  for(let a of menu.entries()){
 //     console.log(a);
     
-// }
+//
